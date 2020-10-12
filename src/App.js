@@ -7,23 +7,23 @@ class NavBar extends Component {
     return <p>{nombre}</p>
   }
 }
-class Movement extends Component {
-  render() {
-    const { amount, name } = this.props
-    return <div className="movement-group">
+function Movement(props) {
+  const { amount, name } = props
+  return (
+    <div className="movement-group">
       <ul>
-        <li className="movement income">
-          <span>{name} - ${amount}</span>
+        <li className={(amount > 0 ? 'income' : 'expense') + " movement"}>
+          <span>{name} - $ {amount}</span>
           <span className="delete-btn">&times;</span>
         </li>
       </ul>
     </div>
-  }
+  );
 }
-class Debt extends Component {
-  render() {
-    const { person, debt, date } = this.props
-    return <div>
+function Debt(props) {
+  const { person, debt, date } = props
+  return (
+    <div>
       <ol>
         <li className="debt">
           <div>
@@ -34,12 +34,12 @@ class Debt extends Component {
         </li>
       </ol>
     </div>
-  }
+  );
 }
-class Saving extends Component {
-  render() {
-    const { totalSaved, target, name } = this.props
-    return <div>
+function Saving(props){
+  const { totalSaved, target, name } = props
+  return(   
+    <div>
       <ul>
         <li className="saving">
           <div>
@@ -57,7 +57,7 @@ class Saving extends Component {
         </li>
       </ul>
     </div>
-  }
+    );
 }
 
 function App() {
@@ -92,10 +92,10 @@ function App() {
             <Movement name="Regalo de tio" amount={3000} />
             <h2>Gastos</h2>
             <p>Total de gastos: $8,220</p>
-            <Movement name="Uber" amount={460} />
-            <Movement name="Netflix" amount={260} />
-            <Movement name="Renta" amount={7000} />
-            <Movement name="Internet" amount={500} />
+            <Movement name="Uber" amount={-460} />
+            <Movement name="Netflix" amount={-260} />
+            <Movement name="Renta" amount={-7000} />
+            <Movement name="Internet" amount={-500} />
           </section>
 
           <section>
